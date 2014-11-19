@@ -4,7 +4,9 @@ class Star
 	protected:
 	int rad;
 	int weight;
-	int loc[3]; // loc[0] = x, loc[1] = y, loc[2] = z..
+	double speed;
+	double loc[3]; // loc[0] = x, loc[1] = y, loc[2] = z..
+	double dir[3]; // dir[0] = x, dir[1] = y, dir[2] = z..
 	
 	public:
 	Star() {}
@@ -15,4 +17,5 @@ class Star
 		loc[2] = z;
 	}
 
+	~Star() {}
 };
