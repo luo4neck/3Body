@@ -2,8 +2,8 @@ class Star
 {
 	private:
 	protected:
-	int rad;
-	int weight;
+	double rad;
+	double weight;
 	double speed;
 	double loc[3]; // loc[0] = x, loc[1] = y, loc[2] = z..
 	double dir[3]; // dir[0] = x, dir[1] = y, dir[2] = z..
