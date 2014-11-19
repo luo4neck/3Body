@@ -1,5 +1,6 @@
 #include<stdlib.h>
 #include<iostream>
+#include "Class_Star.hpp"
 
 using namespace std;
 
