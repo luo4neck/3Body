@@ -1,17 +1,13 @@
 #include<stdlib.h>
 #include<iostream>
 #include<vector>
-#include<boost/python/list.hpp>
-#include<boost/python.hpp>
-//#include<boost>
 #include "Class_Star.hpp"
 
 using namespace std;
-namespace py = boost::python;
 
-int run(vector<int> topy);
+int run(vector<int>& topy);
 
-extern "C"
+extern "C" 
 {
 	vector<int> topy;
 
@@ -20,6 +16,12 @@ extern "C"
 		int Num_Loc = run(topy);
 		
 		cout<<"Totally "<<Num_Loc<<endl;
+	}
+	
+	int Dis(int i)
+	{
+		cout<<"from python: "<<i<<endl;
+		return topy[i]; 
 	}
 /*	
 	void Display(int dic[100])
@@ -32,7 +34,7 @@ extern "C"
 			//dic[i] = topy[i];
 		}
 	}
-*/	
+	
 	py::list vector2list()
 	//py::list vector2list(const vector<int>& topy)
 	{
@@ -41,9 +43,11 @@ extern "C"
 		py::list l(iter);
 		return l;
 	}
+*/	
 }// "C" end here..
 
-int run(vector<int> topy)
+
+int run(vector<int>& topy)
 {
 	unsigned int i_day = 0;
 	unsigned int i_day_max = 100;

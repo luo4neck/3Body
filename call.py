@@ -1,10 +1,10 @@
+#! /usr/bin/python
+
 import ctypes
 
-so = ctypes.CDLL("./main.so")
-print 'fine here\n'
+so = ctypes.CDLL("./libmain.so")
 so.Run()
-L[100] = so.vector2list()
 
-dic = (120)
-# so.Display(dic)
-# dic = so.RI()
+print 'fine here\n'
+for i in range (5,20):
+	print so.Dis(i)
