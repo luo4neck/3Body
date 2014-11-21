@@ -1,11 +1,8 @@
-all: main.o
-	g++ main.o -Wall -o main
-
-main.o: main.cpp Class_Star.hpp
-	g++ -c main.cpp -Wall -o main.o
+all: main.cpp Class_Star.hpp
+	g++ main.cpp -Wall -shared -fPIC -o main.so
 
 test: all
-	./main
+	python Call.py
 
 clean:
-	rm *.o main
+	rm *.o *.so main
