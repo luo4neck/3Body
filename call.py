@@ -3,8 +3,12 @@
 import ctypes
 
 so = ctypes.CDLL("./libmain.so")
-so.Run()
+so.Run() # running the simulation..
 
 print 'fine here\n'
 for i in range (5,20):
 	print so.Dis(i)
+
+# copy the result from stl object into python class..
+
+# 3d display from here #

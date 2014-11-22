@@ -23,27 +23,6 @@ extern "C"
 		cout<<"from python: "<<i<<endl;
 		return topy[i]; 
 	}
-/*	
-	void Display(int dic[100])
-	{
-		int* a = &topy[0];
-		for(int i=0; i<100; ++i)
-		{
-			dic[i] = a[i];
-		cout<<"fine Cpp"<<endl;
-			//dic[i] = topy[i];
-		}
-	}
-	
-	py::list vector2list()
-	//py::list vector2list(const vector<int>& topy)
-	{
-		py::object get_iter = py::iterator< vector<int> >();
-		py::object iter = get_iter(topy);
-		py::list l(iter);
-		return l;
-	}
-*/	
 }// "C" end here..
 
 
@@ -59,7 +38,9 @@ int run(vector<int>& topy)
 		//while( i_sec < i_sec_max )  // main loop for seconds in a day.. 
 		{
 			//all star get F..
+			
 			//all star move..
+			
 			//all star update location..
 
 			i_sec++;
@@ -67,7 +48,6 @@ int run(vector<int>& topy)
 		//cout<<i_day<<endl;
 		
 		topy.push_back( i_day );
-
 		i_day++;
 	}
 
