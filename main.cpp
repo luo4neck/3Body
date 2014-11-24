@@ -1,7 +1,7 @@
 #include<stdlib.h>
 #include<iostream>
 #include<vector>
-#include "Class_Star.hpp"
+#include "class_Star.hpp"
 
 using namespace std;
 
