@@ -40,38 +40,56 @@ int run(vector<int>& topy)
 	long double loc[3] = {0, 0, 0};
 	double dir[3] = {0, 0, 0};
 	Star sun(loc, dir, 0, 2e30, 6.96e8);
-	// for sun: spd = 0m/s, wgt = 2*pow(10, 30)kg, r=6.96*pow(10,8)m
+	// for sun: spd = 0m/s, wgt = 2e30kg, r=6.96e8m
 	// sun start from x=0, y=0, z=0..
 
-	loc[0] = SEdis;
-	loc[1] = 0;
-	loc[2] = 0;
+	loc[0] = SEdis; //x
+	loc[1] = 0;		//y
+	loc[2] = 0;		//z
 	Star earth(loc, dir, 29783.0, 5.9742e24, 6372797.0);
-	// for earth: spd = 29783m/s, wgt = 5.9742*pow(10, 24)kg, r = 6372797m
+	// for earth: spd = 29783m/s, wgt = 5.9742e24kg, r = 6372797m
 	// earth start from x=SEdis, y=0, z=0..
 
 	
 	unsigned int i_day = 0;
-	unsigned int i_day_max = 100;
+	unsigned int i_day_max = 365;
+	unsigned int i_sec_sum = 0;
 	while( i_day < i_day_max )	// main loop for days..
 	{
 		unsigned int i_sec = 0;
-		//unsigned int i_sec_max = 86400;
-		//while( i_sec < i_sec_max )  // main loop for seconds in a day.. 
+		unsigned int i_sec_max = 86400;
+		while( i_sec < i_sec_max )  // main loop for seconds in a day.. 
 		{
 			//all star get F..
+			long double ArcLen = i_sec_sum * earth.Spd();
+			double Angle = ArcLen * 2.0 * pi / SEprt;
 			
+
 			//all star move..
 			
+
 			//all star update location..
+			double new_x = cos(Angle) * SEdis;
+			double new_y = sin(Angle) * SEdis;
+			//double new_z;
+			
+			double long new_loc[3] = {new_x, new_y, 0};
+			earth.LocUpdate(new_loc);
 
 			i_sec++;
+			i_sec_sum++; 
 		}
-		//cout<<i_day<<endl;
 		
+		//cout<<"Day: "<<i_day+1<<endl;
+		cout<<earth.X()<<" "<<earth.Y()<<endl;
+		//cout<<"X= "<<earth.X()<<endl<<"Y= "<<earth.Y()<<endl<<"Z= "<<earth.Z()<<endl<<endl;
+
 		topy.push_back( i_day );
 		i_day++;
 	}
+	cout<<i_sec_sum<<" "<<earth.Spd()<<endl;	
+	cout<<"move year: "<<i_sec_sum * earth.Spd()<<endl;
+	cout<<SEprt<<endl;
 
 	cout<<G<<endl;
 	return topy.size();

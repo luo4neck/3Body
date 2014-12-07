@@ -1,7 +1,7 @@
 class Star
 {
 	private:
-	protected:
+	//protected:
 	const long double radius; // m
 	const long double weight; // kg
 	double long speed; // m/s ??
@@ -18,6 +18,7 @@ class Star
 		location[0]  = loc[0];
 		location[1]  = loc[1]; 
 		location[2]  = loc[2]; 
+		speed = spd;
 	}
 	//Star() {}
 
@@ -25,4 +26,15 @@ class Star
 
 	long double Wgt() const {	return weight; }
 	long double Rds() const {	return radius; }
+	long double Spd() const {	return speed; }
+	long double X()   const {	return location[0]; }	
+	long double Y()   const {	return location[1]; }	
+	long double Z()   const {	return location[2]; }	
+	
+	void LocUpdate(const double long new_loc[3])
+	{
+		location[0] = new_loc[0];
+		location[1] = new_loc[1];
+		location[2] = new_loc[2];
+	}
 };
