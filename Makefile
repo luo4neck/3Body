@@ -3,7 +3,7 @@ all: main.cpp class_Star.hpp
 	g++ -Wall main.o -shared -o libmain.so -I /usr/include/python2.7/
 
 test: all
-	python pstar.py
+	python py_star.py
 
 clean:
 	rm *.o *.so

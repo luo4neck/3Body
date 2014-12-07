@@ -5,10 +5,10 @@
 #include<list>
 #include "class_Star.hpp"
 
-
 using namespace std;
 
-const long double G = 6.67259 * pow(10, -11);
+const long double G = 6.67259e-11;
+const double pi = 3.14159265359; 
 int run(vector<int>& topy);
 
 extern "C" 
@@ -30,30 +30,29 @@ extern "C"
 
 
 int run(vector<int>& topy)
+// main simulation function, will be called by py_star.py
 {
+	/*special defination for sun-earth..*/
+	const long double SEdis = 149597887500; //m.. distance..
+	const long double SEprt = 2*pi*SEdis;//m.. perimeter..
+	/*special defination for sun-earth..*/
+	
+	long double loc[3] = {0, 0, 0};
+	double dir[3] = {0, 0, 0};
+	Star sun(loc, dir, 0, 2e30, 6.96e8);
+	// for sun: spd = 0m/s, wgt = 2*pow(10, 30)kg, r=6.96*pow(10,8)m
+	// sun start from x=0, y=0, z=0..
+
+	loc[0] = SEdis;
+	loc[1] = 0;
+	loc[2] = 0;
+	Star earth(loc, dir, 29783.0, 5.9742e24, 6372797.0);
+	// for earth: spd = 29783m/s, wgt = 5.9742*pow(10, 24)kg, r = 6372797m
+	// earth start from x=SEdis, y=0, z=0..
+
+	
 	unsigned int i_day = 0;
 	unsigned int i_day_max = 100;
-	
-	list<class Star> stars;
-	list<class Star>:: iterator stritr;
-	
-	{
-		long double loc[3] = {0, 0, 0};
-		double dir[3] = {0, 0, 0};
-		Star sun(loc, dir, 1.0, 10.0, 10.0);
-		// for sun: r=6.96*pow(10,8)m, wgt = 2*pow(10, 30)kg
-		stars.push_back(sun);
-		Star earth(loc, dir, 1.0, 18.0, 19.0);
-		// for earth: r = 6372797m, wgt = 5.9742*pow(10, 24)kg
-		stars.push_back(earth);
-	}
-	
-	for(stritr = stars.begin(); stritr != stars.end(); ++stritr)
-	{
-		cout<<stritr->Wgt()<<endl;
-		cout<<stritr->Rds()<<endl;
-	}
-
 	while( i_day < i_day_max )	// main loop for days..
 	{
 		unsigned int i_sec = 0;
