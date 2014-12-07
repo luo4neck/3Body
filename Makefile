@@ -6,4 +6,4 @@ test: all
 	python py_star.py
 
 clean:
-	rm *.o *.so
+	rm *.dat *.o *.so

@@ -1,22 +1,39 @@
 #! /usr/bin/python
 
 import ctypes
-# from ctypes import *
 
-#class Loc(ctypes.Structure):
-#	pass
-#Loc._fields_ = [ ("X", ctypes.c_double), ("Y", ctypes.c_double), ("Z", ctypes.c_double) ]
+class locs:
+	def __init__(self, x, y, z):
+		self.X = x
+		self.Y = y
+		self.Z = z
 
 so = ctypes.CDLL("./libmain.so")
-so.Run() # running the simulation..
 
-so.Dis.restype = ctypes.c_double # define the return value type of Dis..
-so.Dis.argtype = ctypes.c_int # define the input value type of Dis..
+so.DisX.restype = ctypes.c_double 
+# define the return value type of DisX..
+so.DisX.argtype = ctypes.c_int 
+# define the input value type of DisX..
+so.DisY.restype = ctypes.c_double 
+so.DisY.argtype = ctypes.c_int
+so.DisZ.restype = ctypes.c_double
+so.DisZ.argtype = ctypes.c_int
+so.Run.restype = ctypes.c_int
 
-print 'test Dis(i) here\n'
-for i in range (0,8):
-	print 'from python', so.Dis(i)
+loc_size = so.Run() # running the simulation..
+
+for i in range (0,8): # just to test if the values are working fine..
+	print 'from python', so.DisX(i)
 
 # copy the result from stl object into python class..
+Locs = []
+print 'the length of list is:', len(Locs) 
+
+for i in range (0, loc_size): # copy the values from vector to Locs..
+	Locs.append( locs( so.DisX(i), so.DisY(i), so.DisZ(i) ))
+
+#for i in Locs:
+#	print i.X, i.Y
+print 'the length of list is:', len(Locs) 
 
 # 3d display from here.. 

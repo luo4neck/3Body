@@ -16,27 +16,25 @@ extern "C"
 {
 	vector<Loc> topy;
 
-	void Run()
+	int Run()
 	// main simulation..
 	{
 		int Num_Loc = run(topy);
 		cout<<"Totally "<<Num_Loc<<endl;
+		return Num_Loc;
 	}
 
+//	double Dis(int i)
+//	{	return topy[i].x; }
 
-	void show()
-	{
-		cout<<"just show the data of vector 5,6,7"<<endl;
-		cout<<topy[5].x<<" "<<topy[5].y<<endl;
-		cout<<topy[6].x<<" "<<topy[6].y<<endl;
-		cout<<topy[7].x<<" "<<topy[7].y<<endl;
-	}
+	double DisX(int i)
+	{	return topy[i].x; }
+
+	double DisY(int i)
+	{	return topy[i].y; }
 	
-	long double Dis(int i)
-	//double Dis(int i)
-	{
-		return topy[i].x; 
-	}
+	double DisZ(int i)
+	{	return topy[i].z; }
 }// "C" end here..
 
 
@@ -63,7 +61,7 @@ int run(vector<Loc>& topy)
 
 	
 	unsigned int i_day = 0;
-	unsigned int i_day_max = 365;
+	unsigned int i_day_max = 365; // should be 365
 	unsigned int i_sec_sum = 0;
 	while( i_day < i_day_max )	// main loop for days..
 	{
@@ -87,18 +85,10 @@ int run(vector<Loc>& topy)
 			i_sec_sum++; 
 		}
 		
-		//cout<<"Day: "<<i_day+1<<endl;
-		//cout<<earth.X()<<" "<<earth.Y()<<endl;
-		//cout<<"X= "<<earth.X()<<endl<<"Y= "<<earth.Y()<<endl<<"Z= "<<earth.Z()<<endl<<endl;
-		
 		topy.push_back(MakeLoc( earth.X(), earth.Y(), earth.Z() ) ); // push a new location to the back of the vector..
 		i_day++;
 	}
-	/*
-	cout<<i_sec_sum<<" "<<earth.Spd()<<endl;	
-	cout<<"move year: "<<i_sec_sum * earth.Spd()<<endl;
-	cout<<SEprt<<endl;
-	*/
+	
 	cout<<G<<endl;
 	return topy.size();
 }
