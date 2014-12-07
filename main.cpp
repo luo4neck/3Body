@@ -17,16 +17,12 @@ extern "C"
 	vector<Loc> topy;
 
 	void Run()
+	// main simulation..
 	{
 		int Num_Loc = run(topy);
 		cout<<"Totally "<<Num_Loc<<endl;
 	}
 
-/*
-	cout<<topy[5].x<<" "<<topy[5].y<<endl;
-	cout<<topy[6].x<<" "<<topy[6].y<<endl;
-	cout<<topy[7].x<<" "<<topy[7].y<<endl;
-	*/
 
 	void show()
 	{
@@ -36,11 +32,9 @@ extern "C"
 		cout<<topy[7].x<<" "<<topy[7].y<<endl;
 	}
 	
-	//long double Dis(int i)
 	long double Dis(int i)
+	//double Dis(int i)
 	{
-		//cout<<"from c++: "<<i<<endl;
-		//cout<<topy[i].x<<" "<<topy[i].y<<endl;
 		return topy[i].x; 
 	}
 }// "C" end here..
@@ -97,15 +91,7 @@ int run(vector<Loc>& topy)
 		//cout<<earth.X()<<" "<<earth.Y()<<endl;
 		//cout<<"X= "<<earth.X()<<endl<<"Y= "<<earth.Y()<<endl<<"Z= "<<earth.Z()<<endl<<endl;
 		
-		{
-			Loc newloc;
-			newloc.x = earth.X();
-			newloc.y = earth.Y();
-			newloc.z = earth.Z();
-			//cout<<newloc.x<<" "<<newloc.y<<" "<<newloc.z<<" "<<endl;
-			topy.push_back(newloc);
-		}
-
+		topy.push_back(MakeLoc( earth.X(), earth.Y(), earth.Z() ) ); // push a new location to the back of the vector..
 		i_day++;
 	}
 	/*
