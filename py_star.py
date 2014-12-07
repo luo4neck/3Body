@@ -5,9 +5,16 @@ import ctypes
 so = ctypes.CDLL("./libmain.so")
 so.Run() # running the simulation..
 
-print 'fine here\n'
+so.show()
+
+x5 = so.Dis(5)
+print x5
+
+print 'test Dis(i) here\n'
 for i in range (5,8):
-	print so.Dis(i)
+	print 'from python', so.Dis(i)
+
+so.show()
 
 # copy the result from stl object into python class..
 

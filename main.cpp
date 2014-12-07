@@ -4,32 +4,49 @@
 #include<vector>
 #include<list>
 #include "class_Star.hpp"
+#include "store.hpp"
 
 using namespace std;
 
 const long double G = 6.67259e-11;
 const double pi = 3.14159265359; 
-int run(vector<int>& topy);
+int run(vector<Loc>& topy);
 
 extern "C" 
 {
-	vector<int> topy;
+	vector<Loc> topy;
 
 	void Run()
 	{
 		int Num_Loc = run(topy);
 		cout<<"Totally "<<Num_Loc<<endl;
 	}
-	
-	int Dis(int i)
+
+/*
+	cout<<topy[5].x<<" "<<topy[5].y<<endl;
+	cout<<topy[6].x<<" "<<topy[6].y<<endl;
+	cout<<topy[7].x<<" "<<topy[7].y<<endl;
+	*/
+
+	void show()
 	{
-		cout<<"from python: "<<i<<endl;
-		return topy[i]; 
+		cout<<"just show the data of vector 5,6,7"<<endl;
+		cout<<topy[5].x<<" "<<topy[5].y<<endl;
+		cout<<topy[6].x<<" "<<topy[6].y<<endl;
+		cout<<topy[7].x<<" "<<topy[7].y<<endl;
+	}
+	
+	//long double Dis(int i)
+	long double Dis(int i)
+	{
+		//cout<<"from c++: "<<i<<endl;
+		//cout<<topy[i].x<<" "<<topy[i].y<<endl;
+		return topy[i].x; 
 	}
 }// "C" end here..
 
 
-int run(vector<int>& topy)
+int run(vector<Loc>& topy)
 // main simulation function, will be called by py_star.py
 {
 	/*special defination for sun-earth..*/
@@ -64,10 +81,6 @@ int run(vector<int>& topy)
 			long double ArcLen = i_sec_sum * earth.Spd();
 			double Angle = ArcLen * 2.0 * pi / SEprt;
 			
-
-			//all star move..
-			
-
 			//all star update location..
 			double new_x = cos(Angle) * SEdis;
 			double new_y = sin(Angle) * SEdis;
@@ -81,16 +94,25 @@ int run(vector<int>& topy)
 		}
 		
 		//cout<<"Day: "<<i_day+1<<endl;
-		cout<<earth.X()<<" "<<earth.Y()<<endl;
+		//cout<<earth.X()<<" "<<earth.Y()<<endl;
 		//cout<<"X= "<<earth.X()<<endl<<"Y= "<<earth.Y()<<endl<<"Z= "<<earth.Z()<<endl<<endl;
+		
+		{
+			Loc newloc;
+			newloc.x = earth.X();
+			newloc.y = earth.Y();
+			newloc.z = earth.Z();
+			//cout<<newloc.x<<" "<<newloc.y<<" "<<newloc.z<<" "<<endl;
+			topy.push_back(newloc);
+		}
 
-		topy.push_back( i_day );
 		i_day++;
 	}
+	/*
 	cout<<i_sec_sum<<" "<<earth.Spd()<<endl;	
 	cout<<"move year: "<<i_sec_sum * earth.Spd()<<endl;
 	cout<<SEprt<<endl;
-
+	*/
 	cout<<G<<endl;
 	return topy.size();
 }
