@@ -18,7 +18,7 @@ so.DisY.restype = ctypes.c_double
 so.DisY.argtype = ctypes.c_int
 so.DisZ.restype = ctypes.c_double
 so.DisZ.argtype = ctypes.c_int
-so.Run.restype = ctypes.c_int
+so.Run.restype = ctypes.c_int # for Run..
 
 loc_size = so.Run() # running the simulation..
 
