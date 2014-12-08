@@ -29,8 +29,10 @@ for i in range (0,8): # just to test if the values are working fine..
 Locs = []
 print 'the length of list is:', len(Locs) 
 
+print 'Start Copy from vector to Python list'
 for i in range (0, loc_size): # copy the values from vector to Locs..
 	Locs.append( locs( so.DisX(i), so.DisY(i), so.DisZ(i) ))
+print 'Copy Finish'
 
 #for i in Locs:
 #	print i.X, i.Y

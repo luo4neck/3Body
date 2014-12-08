@@ -41,6 +41,7 @@ extern "C"
 int run(vector<Loc>& topy)
 // main simulation function, will be called by py_star.py
 {
+	cout<<"Simulation Start!"<<endl;
 	/*special defination for sun-earth..*/
 	const long double SEdis = 149597887500; //m.. distance..
 	const long double SEprt = 2*pi*SEdis;//m.. perimeter..
@@ -80,15 +81,17 @@ int run(vector<Loc>& topy)
 			
 			double long new_loc[3] = {new_x, new_y, 0};
 			earth.LocUpdate(new_loc);
+			
+			topy.push_back(MakeLoc( earth.X(), earth.Y(), earth.Z() ) ); // push a new location to the back of the vector..
 
 			i_sec++;
 			i_sec_sum++; 
 		}
 		
-		topy.push_back(MakeLoc( earth.X(), earth.Y(), earth.Z() ) ); // push a new location to the back of the vector..
+		//topy.push_back(MakeLoc( earth.X(), earth.Y(), earth.Z() ) ); // push a new location to the back of the vector..
 		i_day++;
 	}
 	
-	cout<<G<<endl;
+	cout<<"Simulation Finish!"<<endl;
 	return topy.size();
 }
