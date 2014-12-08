@@ -24,9 +24,6 @@ extern "C"
 		return Num_Loc;
 	}
 
-//	double Dis(int i)
-//	{	return topy[i].x; }
-
 	double DisX(int i)
 	{	return topy[i].x; }
 
@@ -82,7 +79,8 @@ int run(vector<Loc>& topy)
 			double long new_loc[3] = {new_x, new_y, 0};
 			earth.LocUpdate(new_loc);
 			
-			topy.push_back(MakeLoc( earth.X(), earth.Y(), earth.Z() ) ); // push a new location to the back of the vector..
+			if ( i_sec%3600 == 0 )
+				topy.push_back(MakeLoc( earth.X(), earth.Y(), earth.Z() ) ); // push a new location to the back of the vector..
 
 			i_sec++;
 			i_sec_sum++; 
