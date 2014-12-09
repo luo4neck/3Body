@@ -32,6 +32,11 @@ extern "C"
 	
 	double DisZ(int i)
 	{	return topy[i].z; }
+
+	void FreeVec()
+	{
+		vector<Loc>().swap(topy); // free the memory allocated by topy..
+	}
 }// "C" end here..
 
 

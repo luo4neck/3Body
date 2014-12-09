@@ -33,9 +33,10 @@ print 'Start Copy from vector to Python list'
 for i in range (0, loc_size): # copy the values from vector to Locs..
 	Locs.append( locs( so.DisX(i), so.DisY(i), so.DisZ(i) ))
 print 'Copy Finish'
-
-#for i in Locs:
-#	print i.X, i.Y
+so.FreeVec() # free the memory of vector..
+print 'Mem of Vector is freed'
 print 'the length of list is:', len(Locs) 
 
 # 3d display from here.. 
+
+print '3D'
