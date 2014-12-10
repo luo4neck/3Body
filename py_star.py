@@ -1,6 +1,7 @@
 #! /usr/bin/python
-
+import sys
 import ctypes
+from PyQt4.QtGui import *
 
 class locs:
 	def __init__(self, x, y, z):
@@ -39,4 +40,16 @@ print 'the length of list is:', len(Locs)
 
 # 3d display from here.. 
 
-print '3D'
+app = QApplication(["Neck's Sun-Earth"])
+textedit = QTextEdit()
+button = QPushButton("&Fuck &U")
+button.clicked.connect(app.quit)
+
+layout = QVBoxLayout()
+layout.addWidget(textedit)
+layout.addWidget(button)
+
+window = QWidget()
+window.setLayout(layout)
+window.show()
+app.exec_()
